@@ -31,3 +31,27 @@ const App = (): JSX.Element  => {
 
 export default App;
 ```
+
+## TodoList
+
+### useState
+
+useStateに型を指定
+
+```javascript
+const [value, setValue] = useState<string>('');
+```
+
+### formEvent
+
+formの`onSubmit`関数の引数に`React.FormEvent`指定
+
+```javascript
+type formElem = React.FormEvent<HTMLFormElement>
+const handleSubmit = (e: formElem): void => {
+  e.preventDefault();
+};
+
+<form onSubmit={handleSubmit}>
+</form>
+```
