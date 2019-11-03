@@ -18,7 +18,7 @@ $ yarn add typescript @types/node @types/react @types/react-dom
 ```javascript:App.tsx
 import React from 'react';
 
-const App = () => {
+const App = (): JSX.Element  => {
   const sum = (a: number, b: number): number => {
     return a + b;
   };
