@@ -22,26 +22,35 @@ const TodoList = (): JSX.Element => {
     setTodos(newTodos);
   };
 
-  const completeTodo = (index: number) => {
-    const newTodos: ITodo[] = todos;
+  const completeTodo = (index: number): void => {
+    const newTodos: ITodo[] = [...todos];
     newTodos[index].complete = !todos[index].complete;
     setTodos(newTodos);
-  }
+  };
+
+  const removeTodo = (index: number): void => {
+    const newTodos: ITodo[] = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
 
   return (
    <>
      <h1>ToDo List</h1>
      <form onSubmit={handleSubmit}>
-       <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+       <input type="text" value={value} onChange={e => setValue(e.target.value)} required />
        <button type="submit">Add ToDo</button>
      </form>
      <ul>
        {
          todos.map((todo: ITodo, index: number) => (
            <li key={index}>
-             <span>{todo.text}</span>
+             <span style={{ textDecoration: todo.complete ? 'line-through' : ''}}>{todo.text}</span>
              <button type="button" onClick={() => completeTodo(index)}>
                {todo.complete ? 'Incomplete' : 'complete'}
+             </button>
+             <button type="button" onClick={() => removeTodo(index)}>
+               &times;
              </button>
            </li>
          ))
