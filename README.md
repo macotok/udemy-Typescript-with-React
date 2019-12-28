@@ -34,6 +34,19 @@ const App = (): JSX.Element  => {
 export default App;
 ```
 
+## webpackで導入
+
+```terminal:install
+$ yarn add -D @babel/core @babel/preset/env @babel/preset-react @babel/preset-typescript webpack webpack-cli webpack-dev-server babel-loader
+$ yarn add react react-dom @types/react @types/react-dom
+```
+
+```javascript:.babelrc
+{
+    "presets": ["@babel/env", "@babel/react", "@babel/typescript"]
+}
+```
+
 ## TodoList
 
 ### useState
