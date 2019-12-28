@@ -68,6 +68,20 @@ interface ITodo {
 const [todos, setTodos] = useState<ITodo[]>([]);
 ```
 
+型を継承
+
+```javascript
+interface ITodo {
+  text: string,
+  complete: boolean
+}
+
+interface ITodo2 extend ITodo {
+  tags: string[]
+}
+```
+
+
 ### 関数に型指定
 
 ```javascript
@@ -97,7 +111,7 @@ const handleSubmit = (e: formElem): void => {
 ```javascript
 <ul>
   {
-    todos.map((todo: ITodo, index: number) => ( 
+    todos.map((todo: ITodo, index: number) => (
       <li key={index}>{todo.text}</li>
     ))
   }
