@@ -7,6 +7,8 @@ Udemy講座
 
 ### ReactにTypeScriptをinstall
 
+※`create-react-app`でアプリケーションを作りました。
+
 ```
 $ yarn add typescript @types/node @types/react @types/react-dom
 ```
@@ -36,13 +38,34 @@ export default App;
 
 ### useState
 
-useStateに型を指定
+useStateに文字列型を指定
 
 ```javascript
 const [value, setValue] = useState<string>('');
 ```
 
-### formEvent
+useStateにオブジェクト型を指定
+
+```javascript
+interface ITodo {
+  text: string,
+  complete: boolean
+}
+
+const [todos, setTodos] = useState<ITodo[]>([]);
+```
+
+### 関数に型指定
+
+```javascript
+const addTodo = (text: string): void => {
+  const newTodos: ITodo[] = [...todos, { text, complete: false }];
+  setTodos(newTodos);
+};
+```
+
+
+### formEventの型指定
 
 formの`onSubmit`関数の引数に`React.FormEvent`指定
 
@@ -54,4 +77,16 @@ const handleSubmit = (e: formElem): void => {
 
 <form onSubmit={handleSubmit}>
 </form>
+```
+
+### mapで展開するときの型指定
+
+```javascript
+<ul>
+  {
+    todos.map((todo: ITodo, index: number) => ( 
+      <li key={index}>{todo.text}</li>
+    ))
+  }
+</ul>
 ```
