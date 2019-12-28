@@ -36,12 +36,16 @@ export default App;
 
 ## webpackで導入
 
-```terminal:install
+- packageをinstall
+
+```terminal
 $ yarn add -D @babel/core @babel/preset/env @babel/preset-react @babel/preset-typescript webpack webpack-cli webpack-dev-server babel-loader
 $ yarn add react react-dom @types/react @types/react-dom
 ```
 
-```javascript:.babelrc
+- .babelrcを設定
+
+```javascript
 {
     "presets": ["@babel/env", "@babel/react", "@babel/typescript"]
 }
@@ -51,13 +55,13 @@ $ yarn add react react-dom @types/react @types/react-dom
 
 ### useState
 
-useStateに文字列型を指定
+- useStateに文字列型を指定
 
 ```javascript
 const [value, setValue] = useState<string>('');
 ```
 
-useStateにオブジェクト型を指定
+- useStateにオブジェクト型を指定
 
 ```javascript
 interface ITodo {
@@ -68,7 +72,7 @@ interface ITodo {
 const [todos, setTodos] = useState<ITodo[]>([]);
 ```
 
-型を継承
+- 型を継承
 
 ```javascript
 interface ITodo {
@@ -81,7 +85,6 @@ interface ITodo2 extend ITodo {
 }
 ```
 
-
 ### 関数に型指定
 
 ```javascript
@@ -91,10 +94,9 @@ const addTodo = (text: string): void => {
 };
 ```
 
-
 ### formEventの型指定
 
-formの`onSubmit`関数の引数に`React.FormEvent`指定
+- formの`onSubmit`関数の引数に`React.FormEvent`指定
 
 ```javascript
 type formElem = React.FormEvent<HTMLFormElement>
