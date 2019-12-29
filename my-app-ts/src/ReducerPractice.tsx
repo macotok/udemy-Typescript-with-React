@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Store, FETCH_DATA, ADD_FAVORITE } from './Store';
+import { Store, FETCH_DATA, ADD_FAVORITE, REMOVE_FAVORITE } from './Store';
 import { IAction, IEpisode } from './Interfaces';
 
 const ReducerPractice = () => {
@@ -20,14 +20,28 @@ const ReducerPractice = () => {
   };
 
   const toggleFavoriteAction = (episode: IEpisode): IAction => {
-    return dispatch({
+    const episodeInFavorite = state.favorites.includes(episode);
+    let dispatchObj: IAction = {
       type: ADD_FAVORITE,
       payload: episode,
-    })
+    };
+    if (episodeInFavorite) {
+      const favoriteWithoutEpisode = state.favorites.find((favorite: IEpisode) => favorite.id === episode.id );
+      dispatchObj = {
+        type: REMOVE_FAVORITE,
+        payload: favoriteWithoutEpisode,
+      };
+    }
+
+    return dispatch(dispatchObj);
   };
 
   return (
     <>
+      <header>
+        <h1>Episodes and Favorite Episodes</h1>
+        <p>Episode{state.favorites.length > 1 ? 's' : null }: {state.favorites.length}</p>
+      </header>
       <ul className="episodeWrap">
         {
           state.episodes.map((episode: IEpisode) => (
@@ -36,7 +50,9 @@ const ReducerPractice = () => {
               <p>{episode.name}</p>
               <div>
                 <p>Season: {episode.season} Number: {episode.number}</p>
-                <button type="button" onClick={() => toggleFavoriteAction(episode)}>Favorite</button>
+                <button type="button" onClick={() => toggleFavoriteAction(episode)}>
+                  {state.favorites.find((favorite: IEpisode) => favorite.id === episode.id) ? 'UnFavorite' : 'Favorite'}
+                </button>
               </div>
             </li>
           ))

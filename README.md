@@ -86,6 +86,7 @@ interface ITodo2 extend ITodo {
 ```
 
 - exportで外部ファイルに適用
+- 複数interfaceを1つのファイルで管理可能
 
 ```typescript
 export interface IAction {

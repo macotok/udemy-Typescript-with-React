@@ -8,6 +8,13 @@ body {
   font-size: 10px;
 }
 
+header {
+  border-bottom: 1px solid #333;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 .episodeWrap {
   display: flex;
   flex-wrap: wrap;
