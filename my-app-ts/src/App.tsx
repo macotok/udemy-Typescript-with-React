@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './TodoList';
 import { Parent, Child} from './Context';
+import ReducerPractice from './ReducerPractice';
 
 const App = (): JSX.Element => {
   return (
@@ -9,6 +10,7 @@ const App = (): JSX.Element => {
      <Parent>
        <Child />
       </Parent>
+      <ReducerPractice />
    </>
   );
 };

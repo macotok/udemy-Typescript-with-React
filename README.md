@@ -57,13 +57,13 @@ $ yarn add react react-dom @types/react @types/react-dom
 
 - useStateに文字列型を指定
 
-```javascript
+```typescript
 const [value, setValue] = useState<string>('');
 ```
 
 - useStateにオブジェクト型を指定
 
-```javascript
+```typescript
 interface ITodo {
   text: string,
   complete: boolean
@@ -74,7 +74,7 @@ const [todos, setTodos] = useState<ITodo[]>([]);
 
 - 型を継承
 
-```javascript
+```typescript
 interface ITodo {
   text: string,
   complete: boolean
@@ -87,7 +87,12 @@ interface ITodo2 extend ITodo {
 
 ### 関数に型指定
 
-```javascript
+```typescript
+interface ITodo {
+  text: string,
+  complete: boolean
+}
+
 const addTodo = (text: string): void => {
   const newTodos: ITodo[] = [...todos, { text, complete: false }];
   setTodos(newTodos);
@@ -98,7 +103,7 @@ const addTodo = (text: string): void => {
 
 - formの`onSubmit`関数の引数に`React.FormEvent`指定
 
-```javascript
+```typescript
 type formElem = React.FormEvent<HTMLFormElement>
 const handleSubmit = (e: formElem): void => {
   e.preventDefault();
@@ -110,7 +115,12 @@ const handleSubmit = (e: formElem): void => {
 
 ### mapで展開するときの型指定
 
-```javascript
+```typescript
+interface ITodo {
+  text: string,
+  complete: boolean
+}
+
 <ul>
   {
     todos.map((todo: ITodo, index: number) => (
@@ -118,4 +128,35 @@ const handleSubmit = (e: formElem): void => {
     ))
   }
 </ul>
+```
+
+### stateとactionに導入
+
+```typescript
+import React, { createContext } from 'react';
+export const FETCH_DATA = 'FETCH_DATA';
+
+interface IState {
+  hoge: []
+}
+
+interface IAction {
+  type: string,
+  payload: any
+}
+
+const initialState:IState = {
+  hoge: []
+};
+
+export const Store = createContext<IState>(initialState);
+
+const reducer = (state: IState, action: IAction) => {
+  switch (action.type) {
+    case FETCH_DATA:
+      return { ...state, hoge: action.payload };
+    default:
+      return state;
+  }
+};
 ```
