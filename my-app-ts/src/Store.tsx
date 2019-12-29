@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
 export const FETCH_DATA = 'FETCH_DATA';
 
 interface IState {
@@ -16,7 +16,7 @@ const initialState:IState = {
   favorites: []
 };
 
-export const Store = createContext<IState>(initialState);
+export const Store = createContext<IState | any>(initialState);
 
 const reducer = (state: IState, action: IAction) => {
   switch (action.type) {
@@ -27,6 +27,9 @@ const reducer = (state: IState, action: IAction) => {
   }
 };
 
-export const StoreReducer = (props: any): JSX.Element => (
-  <Store.Provider value={initialState}>{props.children}</Store.Provider>
-)
+export const StoreProvider = (props: any): JSX.Element => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <Store.Provider value={{ state, dispatch }}>{props.children}</Store.Provider>
+  )
+};
