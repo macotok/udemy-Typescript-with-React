@@ -85,6 +85,15 @@ interface ITodo2 extend ITodo {
 }
 ```
 
+- exportで外部ファイルに適用
+
+```typescript
+export interface IAction {
+  type: string,
+  payload: any
+}
+```
+
 ### 関数に型指定
 
 ```typescript

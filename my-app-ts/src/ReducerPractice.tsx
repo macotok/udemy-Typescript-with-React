@@ -1,19 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { Store, FETCH_DATA } from './Store';
-
-interface IEpisode {
-  airdate: string
-  airstamp: string
-  airtime: string
-  id: number
-  image: {medium: string, original: string}
-  name: string
-  number: number
-  runtime: number
-  season: number
-  summary: string
-  url: string
-}
+import { Store, FETCH_DATA, ADD_FAVORITE } from './Store';
+import { IAction, IEpisode } from './Interfaces';
 
 const ReducerPractice = () => {
   const { state, dispatch } = useContext(Store);
@@ -32,6 +19,13 @@ const ReducerPractice = () => {
     });
   };
 
+  const toggleFavoriteAction = (episode: IEpisode): IAction => {
+    return dispatch({
+      type: ADD_FAVORITE,
+      payload: episode,
+    })
+  };
+
   return (
     <>
       <ul className="episodeWrap">
@@ -40,7 +34,10 @@ const ReducerPractice = () => {
             <li key={episode.id} className="episodeItem">
               <img src={episode.image.medium} alt={episode.name} />
               <p>{episode.name}</p>
-              <p>Season: {episode.season} Number: {episode.number}</p>
+              <div>
+                <p>Season: {episode.season} Number: {episode.number}</p>
+                <button type="button" onClick={() => toggleFavoriteAction(episode)}>Favorite</button>
+              </div>
             </li>
           ))
         }
