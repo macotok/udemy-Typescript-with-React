@@ -170,3 +170,11 @@ const reducer = (state: IState, action: IAction) => {
   }
 };
 ```
+
+### lazyに適用
+
+```typescript
+import React, { lazy } from 'react';
+
+const Hoge = lazy<any>(() => import('./Hoge'));
+```

@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, lazy, Suspense } from 'react';
 import { Store, FETCH_DATA, ADD_FAVORITE, REMOVE_FAVORITE } from './Store';
 import { IAction, IEpisode } from './Interfaces';
 
+const EpisodeList = lazy<any>(() => import('./EpisodeList'));
+
 const ReducerPractice = () => {
   const { state, dispatch } = useContext(Store);
+  const { episodes, favorites } = state;
 
   useEffect(() => {
     state.episodes.length === 0 && fetchDataAction()
@@ -36,28 +39,23 @@ const ReducerPractice = () => {
     return dispatch(dispatchObj);
   };
 
+  const episodeProps = {
+    episodes,
+    toggleFavoriteAction,
+    favorites,
+  };
+
   return (
     <>
       <header>
         <h1>Episodes and Favorite Episodes</h1>
         <p>Episode{state.favorites.length > 1 ? 's' : null }: {state.favorites.length}</p>
       </header>
-      <ul className="episodeWrap">
-        {
-          state.episodes.map((episode: IEpisode) => (
-            <li key={episode.id} className="episodeItem">
-              <img src={episode.image.medium} alt={episode.name} />
-              <p>{episode.name}</p>
-              <div>
-                <p>Season: {episode.season} Number: {episode.number}</p>
-                <button type="button" onClick={() => toggleFavoriteAction(episode)}>
-                  {state.favorites.find((favorite: IEpisode) => favorite.id === episode.id) ? 'UnFavorite' : 'Favorite'}
-                </button>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+      <Suspense fallback={<div>loading...</div>}>
+        <ul className="episodeWrap">
+          <EpisodeList {...episodeProps} />
+        </ul>
+      </Suspense>
     </>
   )
 };
