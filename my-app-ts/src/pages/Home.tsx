@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, lazy, Suspense } from 'react';
-import { Store, FETCH_DATA, ADD_FAVORITE, REMOVE_FAVORITE } from './Store';
-import { IAction, IEpisode } from './Interfaces';
+import React, { lazy, Suspense, useContext, useEffect } from 'react';
+import { ADD_FAVORITE, FETCH_DATA, Index, REMOVE_FAVORITE } from '../store';
+import { IAction, IEpisode, IEpisodeProps } from '../interfaces';
 
-const EpisodeList = lazy<any>(() => import('./EpisodeList'));
+const EpisodeList = lazy<any>(() => import('../components/EpisodeList'));
 
-const ReducerPractice = () => {
-  const { state, dispatch } = useContext(Store);
+const Home = (): JSX.Element => {
+  const { state, dispatch } = useContext(Index);
   const { episodes, favorites } = state;
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const ReducerPractice = () => {
     return dispatch(dispatchObj);
   };
 
-  const episodeProps = {
+  const episodeProps: IEpisodeProps = {
     episodes,
     toggleFavoriteAction,
     favorites,
@@ -47,10 +47,6 @@ const ReducerPractice = () => {
 
   return (
     <>
-      <header>
-        <h1>Episodes and Favorite Episodes</h1>
-        <p>Episode{state.favorites.length > 1 ? 's' : null }: {state.favorites.length}</p>
-      </header>
       <Suspense fallback={<div>loading...</div>}>
         <ul className="episodeWrap">
           <EpisodeList {...episodeProps} />
@@ -60,4 +56,4 @@ const ReducerPractice = () => {
   )
 };
 
-export default ReducerPractice;
+export default Home;

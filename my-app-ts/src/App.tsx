@@ -1,19 +1,23 @@
 import React from 'react';
-import TodoList from './TodoList';
-import { Parent, Child} from './Context';
-import ReducerPractice from './ReducerPractice';
-import { StoreProvider } from './Store';
 import './index.css';
+import Episode from './Episode';
+import { StoreProvider } from './store';
+import { Router, RouteComponentProps } from '@reach/router';
+import Home from './pages/Home';
+import Favorite from './pages/Favorite';
+
+const RouterPage = (props: {pageComponent: JSX.Element} & RouteComponentProps ) => props.pageComponent;
 
 const App = (): JSX.Element => {
   return (
    <>
-     {/*<TodoList />*/}
-     {/*<Parent>*/}
-     {/*  <Child />*/}
-     {/* </Parent>*/}
      <StoreProvider>
-        <ReducerPractice />
+       <Router>
+        <Episode path="/">
+          <RouterPage pageComponent={<Home />} path="/" />
+          <RouterPage pageComponent={<Favorite />} path="/favorite" />
+        </Episode>
+       </Router>
       </StoreProvider>
    </>
   );

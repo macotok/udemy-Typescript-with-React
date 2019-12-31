@@ -159,7 +159,7 @@ const initialState:IState = {
   hoge: []
 };
 
-export const Store = createContext<IState>(initialState);
+export const Index = createContext<IState>(initialState);
 
 const reducer = (state: IState, action: IAction) => {
   switch (action.type) {

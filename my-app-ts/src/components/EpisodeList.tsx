@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEpisode } from './Interfaces';
+import { IEpisode } from '../interfaces';
 
 const EpisodeList = (props: any) => {
   const { episodes, toggleFavoriteAction, favorites } = props;

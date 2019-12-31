@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import {IState, IAction, IEpisode} from './Interfaces';
+import {IState, IAction, IEpisode} from '../interfaces';
 
 export const FETCH_DATA = 'FETCH_DATA';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
@@ -10,7 +10,7 @@ const initialState:IState = {
   favorites: []
 };
 
-export const Store = createContext<IState | any>(initialState);
+export const Index = createContext<IState | any>(initialState);
 
 const reducer = (state: IState, action: IAction) => {
   switch (action.type) {
@@ -33,6 +33,6 @@ const reducer = (state: IState, action: IAction) => {
 export const StoreProvider = (props: any): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Store.Provider value={{ state, dispatch }}>{props.children}</Store.Provider>
+    <Index.Provider value={{ state, dispatch }}>{props.children}</Index.Provider>
   )
 };
