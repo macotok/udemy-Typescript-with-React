@@ -178,3 +178,28 @@ import React, { lazy } from 'react';
 
 const Hoge = lazy<any>(() => import('./Hoge'));
 ```
+
+### props.childrenに適用
+
+```typescript
+const Hoge = ({ children }: JSX.ElementChildrenAttribute): JSX.Element => (
+  <>
+    {children}
+  </>
+)
+```
+
+### dispatchに適用
+
+```typescript
+export type Dispatch = React.Dispatch<IAction>
+
+export interface IAction {
+  type: string,
+  payload: Array<Hoge>
+}
+
+export interface Foo {
+  store: { state: IState, dispatch: Dispatch }
+}
+```
