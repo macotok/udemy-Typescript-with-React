@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useContext, useEffect} from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 import { Index } from '../store';
 import { toggleFavoriteAction } from '../store/actions';
 import { IEpisodeProps } from '../interfaces';

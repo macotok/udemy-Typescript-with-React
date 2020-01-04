@@ -1,8 +1,7 @@
 import React from 'react';
-import { IEpisode } from '../interfaces';
+import { IEpisode, IEpisodeProps } from '../interfaces';
 
-const EpisodeList = (props: any) => {
-  const { episodes, toggleFavoriteAction, store, favorites } = props;
+const EpisodeList: React.FC<IEpisodeProps | any> = ({ episodes, toggleFavoriteAction, store, favorites }) => {
   const { state, dispatch } = store;
   return (
     episodes.map((episode: IEpisode) => (

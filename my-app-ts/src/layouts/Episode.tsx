@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Index } from './store';
+import { Index } from '../store';
 import { Link } from '@reach/router';
 
 

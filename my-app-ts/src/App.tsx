@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import Episode from './Episode';
+import Episode from './layouts/Episode';
 import { StoreProvider } from './store';
 import { Router, RouteComponentProps } from '@reach/router';
 import Home from './pages/Home';
