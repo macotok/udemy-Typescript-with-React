@@ -1,12 +1,12 @@
 import React, { lazy, Suspense, useContext, useEffect } from 'react';
-import { Index } from '../store';
+import AppContext from '../store/AppContext';
 import { IEpisodeProps } from '../interfaces';
 import { fetchDataAction, toggleFavoriteAction } from '../store/actions';
 
 const EpisodeList = lazy<any>(() => import('../components/EpisodeList'));
 
 const Home = (): JSX.Element => {
-  const { state, dispatch } = useContext(Index);
+  const { state, dispatch } = useContext(AppContext);
   const { episodes, favorites } = state;
 
   useEffect(() => {

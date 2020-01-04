@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-import { Index } from '../store';
+import React, { FC, ReactNode, useContext } from 'react';
 import { Link } from '@reach/router';
+import AppContext from '../store/AppContext';
 
+type Props = {
+  path: string;
+  children: ReactNode;
+}
 
-const Episode = (props: any): JSX.Element => {
-  const { state } = useContext(Index);
+const Default: FC<Props> = ({ children }) => {
+  const { state } = useContext(AppContext);
 
   return (
     <>
@@ -15,9 +19,9 @@ const Episode = (props: any): JSX.Element => {
           <li><Link to="/favorite">favorite{state.favorites.length > 1 ? 's' : null }: {state.favorites.length}</Link></li>
         </ul>
       </header>
-      {props.children}
+      {children}
     </>
   )
 };
 
-export default Episode;
+export default Default;
