@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useContext, useEffect } from 'react';
 import AppContext from '../store/AppContext';
 import { IEpisodeProps } from '../interfaces';
-import { fetchDataAction, toggleFavoriteAction } from '../store/actions';
+import { fetchDataAction, toggleFavoriteAction } from '../actions';
 
 const EpisodeList = lazy<any>(() => import('../components/EpisodeList'));
 

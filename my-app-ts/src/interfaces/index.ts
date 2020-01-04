@@ -1,4 +1,4 @@
-export type Dispatch = React.Dispatch<IAction>
+export type Dispatch = React.Dispatch<IAction> | any;
 
 export interface IState {
   episodes: IEpisode[];
