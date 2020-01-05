@@ -23,9 +23,9 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Suspense fallback={<div>loading...</div>}>
-        <ul className="episodeWrap">
+        <div className="episodeWrap">
           <EpisodeList {...episodeProps} />
-        </ul>
+        </div>
       </Suspense>
     </>
   )

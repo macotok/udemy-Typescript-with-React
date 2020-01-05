@@ -19,9 +19,9 @@ const Favorite: FC = () => {
   return (
     <>
       <Suspense fallback={<div>loading...</div>}>
-        <ul className="episodeWrap">
+        <div className="episodeWrap">
           <EpisodeList {...episodeProps} />
-        </ul>
+        </div>
       </Suspense>
     </>
   );

@@ -1,7 +1,6 @@
 import { FETCH_DATA, ADD_FAVORITE, REMOVE_FAVORITE } from '../actions';
 import { IState, IAction, IEpisode } from '../interfaces';
 
-
 export const initialState:IState = {
   episodes: [],
   favorites: []

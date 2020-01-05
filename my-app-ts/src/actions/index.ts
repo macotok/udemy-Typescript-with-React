@@ -7,6 +7,7 @@ export const REMOVE_FAVORITE: string = 'REMOVE_FAVORITE';
 export const fetchDataAction = async (dispatch: Dispatch) => {
   const data = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
   const dataJson = await data.json();
+  console.log(dataJson._embedded.episodes)
   return dispatch({
     type: FETCH_DATA,
     payload: dataJson._embedded.episodes,

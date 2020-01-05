@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styled/index.css';
 import Default from './layouts/Default';
 import { initialState, reducer } from './store';
 import AppContext from './store/AppContext';
