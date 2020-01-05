@@ -1,5 +1,5 @@
 import React, { FC, lazy, Suspense, useContext } from 'react';
-import AppContext from '../store/AppContext';
+import AppContext from '../contexts/AppContext';
 import { toggleFavoriteAction } from '../actions';
 import { IEpisodeProps } from '../interfaces';
 
