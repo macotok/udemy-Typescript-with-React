@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { FC, useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styled/index.css';
 import Default from './layouts/Default';
@@ -10,7 +10,7 @@ import Favorite from './pages/Favorite';
 
 const RouterPage = (props: {pageComponent: JSX.Element} & RouteComponentProps ) => props.pageComponent;
 
-const App = (): JSX.Element => {
+const App: FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
    <>

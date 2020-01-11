@@ -1,13 +1,13 @@
 import React, { FC, lazy, Suspense, useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 import { toggleFavoriteAction } from '../actions';
-import { IEpisodeProps } from '../interfaces';
+import { IAction, IEpisode, IEpisodeProps, IState } from '../interfaces';
 
-const EpisodeList = lazy<any>(() => import('../components/EpisodeList'));
+const EpisodeList: any = lazy<any>(() => import('../components/EpisodeList'));
 
 const Favorite: FC = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const { favorites } = state;
+  const { state, dispatch }: { state: IState, dispatch: IAction } = useContext(AppContext);
+  const { favorites }: { favorites: IEpisode[] } = state;
 
   const episodeProps: IEpisodeProps = {
     episodes: favorites,
