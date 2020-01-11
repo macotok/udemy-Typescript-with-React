@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { IEpisode, IEpisodeProps } from '../interfaces';
+import { IAction, IEpisode, IEpisodeProps, IState } from '../interfaces';
 
 const EpisodeList: FC<IEpisodeProps | any> = ({ episodes, toggleFavoriteAction, store, favorites }) => {
-  const { state, dispatch } = store;
+  const { state, dispatch } : { state: IState, dispatch: IAction } = store;
   return (
     episodes.map((episode: IEpisode) => {
       const isFavorite: IEpisode = favorites.includes(episode);

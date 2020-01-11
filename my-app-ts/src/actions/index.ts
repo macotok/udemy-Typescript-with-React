@@ -5,9 +5,8 @@ export const ADD_FAVORITE: string = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE: string = 'REMOVE_FAVORITE';
 
 export const fetchDataAction = async (dispatch: Dispatch) => {
-  const data = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
-  const dataJson = await data.json();
-  console.log(dataJson._embedded.episodes)
+  const data: any = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes');
+  const dataJson: any = await data.json();
   return dispatch({
     type: FETCH_DATA,
     payload: dataJson._embedded.episodes,
@@ -15,16 +14,16 @@ export const fetchDataAction = async (dispatch: Dispatch) => {
 };
 
 export const toggleFavoriteAction = (state: IState, dispatch: Dispatch, episode: IEpisode | any): IAction => {
-  const { favorites } = state;
+  const { favorites }: { favorites: IEpisode[] } = state;
 
   let dispatchObj: IAction = {
     type: ADD_FAVORITE,
     payload: episode,
   };
 
-  const episodeInFavorite = favorites.includes(episode);
+  const episodeInFavorite: boolean = favorites.includes(episode);
   if (episodeInFavorite) {
-    const favoriteWithoutEpisode = favorites.find((favorite: IEpisode) => favorite.id === episode.id );
+    const favoriteWithoutEpisode: IEpisode | undefined = favorites.find((favorite: IEpisode) => favorite.id === episode.id );
     dispatchObj = {
       type: REMOVE_FAVORITE,
       payload: favoriteWithoutEpisode,
